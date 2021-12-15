@@ -14,7 +14,7 @@
 	<property name="installer" value="org/rsna/installer"/>
 	<property name="dicomeditor" value="org/rsna/dicomeditor"/>
 
-	<property name="ctp" value="/Development/CTP"/>
+	<property name="ctp" value="CTP"/>
 
 	<property name="title" value="FileEditor"/>
 	<property name="copyright" value="Copyright 2012 Radiological Society of North America"/>
@@ -24,6 +24,7 @@
 		<pathelement location="${libraries}/libraries/log4j.jar"/>
 		<pathelement location="${libraries}/libraries/CTP.jar"/>
 		<pathelement location="${libraries}/libraries/util.jar"/>
+		<pathelement location="${libraries}/libraries/jdbm.jar"/>
 	</path>
 
 	<target name="init">
@@ -49,6 +50,7 @@
 				<include name="dcm4che.jar"/>
 				<include name="log4j.jar"/>
 				<include name="util.jar"/>
+				<include name="jdbm.jar"/>
 			</fileset>
 		</copy>
 		<copy overwrite="true" todir="${libraries}/imageio">
@@ -82,6 +84,7 @@
 libraries/log4j.jar 
 libraries/CTP.jar 
 libraries/util.jar 
+libraries/jdbm.jar
 imageio/clibwrapper_jiio-1.2-pre-dr-b04.jar
 imageio/dcm4che-imageio-rle-2.0.25.jar
 imageio/jai_imageio-1.2-pre-dr-b04.jar

@@ -1,11 +1,11 @@
 <script>
  <p t="DATEINC">-137</p>
  <p t="PROFILENAME">DICOM-PS3.15E-Basic</p>
- <p t="PROJECTNAME">Project</p>
- <p t="SHORTNAME">Project</p>
- <p t="SITEID">99</p>
- <p t="SITENAME">SiteName</p>
- <p t="TRIALNAME">Trial</p>
+ <p t="PROJECTNAME">Hypofocal</p>
+ <p t="SHORTNAME">Hypofocal</p>
+ <p t="SITEID">01</p>
+ <p t="SITENAME">Freiburg</p>
+ <p t="TRIALNAME">Hypofocal</p>
  <p t="UIDROOT">9999</p>
  <e en="T" t="00080005" n="SpecificCharacterSet">@keep()</e>
  <e en="F" t="00080006" n="LanguageCodeSeq"></e>
@@ -19,16 +19,16 @@
  <e en="F" t="0008001a" n="RelatedGeneralSOPClassUID"></e>
  <e en="F" t="0008001b" n="OriginalSpecializedSOPClassUID"></e>
  <e en="T" t="00080020" n="StudyDate">@hashdate(this,PatientID)</e>
- <e en="T" t="00080021" n="SeriesDate">@remove()</e>
- <e en="T" t="00080022" n="AcquisitionDate">@remove()</e>
+ <e en="F" t="00080021" n="SeriesDate"></e>
+ <e en="F" t="00080022" n="AcquisitionDate"></e>
  <e en="T" t="00080023" n="ContentDate">@hashdate(this,PatientID)</e>
  <e en="T" t="00080024" n="OverlayDate">@remove()</e>
  <e en="T" t="00080025" n="CurveDate">@remove()</e>
  <e en="T" t="0008002a" n="AcquisitionDatetime">@remove()</e>
  <e en="T" t="00080030" n="StudyTime">@empty()</e>
- <e en="T" t="00080031" n="SeriesTime">@remove()</e>
- <e en="T" t="00080032" n="AcquisitionTime">@remove()</e>
- <e en="T" t="00080033" n="ContentTime">@empty()</e>
+ <e en="F" t="00080031" n="SeriesTime"></e>
+ <e en="F" t="00080032" n="AcquisitionTime"></e>
+ <e en="F" t="00080033" n="ContentTime"></e>
  <e en="T" t="00080034" n="OverlayTime">@remove()</e>
  <e en="T" t="00080035" n="CurveTime">@remove()</e>
  <e en="T" t="00080050" n="AccessionNumber">@hash(this,16)</e>
@@ -126,15 +126,15 @@
  <e en="F" t="00081100" n="RefResultsSeq"></e>
  <e en="T" t="00081110" n="RefStudySeq">@remove()</e>
  <e en="T" t="00081111" n="RefPPSSeq">@remove()</e>
- <e en="F" t="00081115" n="RefSeriesSeq"></e>
- <e en="T" t="00081120" n="RefPatientSeq">@remove()</e>
+ <e en="T" t="00081115" n="RefSeriesSeq">@process()</e>
+ <e en="T" t="00081120" n="RefPatientSeq">@process()</e>
  <e en="F" t="00081125" n="RefVisitSeq"></e>
  <e en="F" t="00081130" n="RefOverlaySeq"></e>
  <e en="F" t="00081134" n="RefStereometricInstanceSeq"></e>
  <e en="F" t="0008113a" n="RefWaveformSeq"></e>
- <e en="T" t="00081140" n="RefImageSeq">@remove()</e>
+ <e en="T" t="00081140" n="RefImageSeq">@process()</e>
  <e en="F" t="00081145" n="RefCurveSeq"></e>
- <e en="F" t="0008114a" n="RefInstanceSeq"></e>
+ <e en="T" t="0008114a" n="RefInstanceSeq">@process()</e>
  <e en="F" t="0008114b" n="RefRealWorldValueMappingInstanceSeq"></e>
  <e en="T" t="00081150" n="RefSOPClassUID">@keep()</e>
  <e en="T" t="00081155" n="RefSOPInstanceUID">@hashuid(@UIDROOT,this)</e>
@@ -153,7 +153,7 @@
  <e en="F" t="00081198" n="FailedSOPSeq"></e>
  <e en="F" t="00081199" n="RefSOPSeq"></e>
  <e en="F" t="0008119a" n="OtherFailuresSeq"></e>
- <e en="F" t="00081200" n="StudiesContainingOtherRefInstancesSeq"></e>
+ <e en="T" t="00081200" n="StudiesContainingOtherRefInstancesSeq">@process()</e>
  <e en="F" t="00081250" n="RelatedSeriesSeq"></e>
  <e en="T" t="00082111" n="DerivationDescription">@remove()</e>
  <e en="T" t="00082112" n="SourceImageSeq">@remove()</e>
@@ -204,8 +204,8 @@
  <e en="F" t="00089458" n="FrameDisplaySeq"></e>
  <e en="F" t="00089459" n="RecommendedDisplayFrameRateInFloat"></e>
  <e en="F" t="00089460" n="SkipFrameRangeFlag"></e>
- <e en="T" t="00100010" n="PatientName">@hash(PatientID,10)</e>
- <e en="T" t="00100020" n="PatientID">@hash(this,10)</e>
+ <e en="T" t="00100010" n="PatientName">@param(@SITENAME)-@integer(PatientID,ptid,3)</e>
+ <e en="T" t="00100020" n="PatientID">@param(@SITENAME)-@integer(PatientID,ptid,3)</e>
  <e en="T" t="00100021" n="IssuerOfPatientID">@remove()</e>
  <e en="F" t="00100022" n="TypeOfPatientID"></e>
  <e en="F" t="00100024" n="IssuerOfPatientIDQualifiersSeq"></e>
@@ -2128,7 +2128,7 @@
  <e en="F" t="00400008" n="ScheduledProtocolCodeSeq"></e>
  <e en="F" t="00400009" n="SPSID"></e>
  <e en="F" t="0040000a" n="StageCodeSeq"></e>
- <e en="T" t="0040000b" n="">@remove()</e>
+ <e en="T" t="0040000b">@remove()</e>
  <e en="T" t="00400010" n="ScheduledStationName">@remove()</e>
  <e en="T" t="00400011" n="SPSLocation">@remove()</e>
  <e en="T" t="00400012" n="PreMedication">@remove()</e>
@@ -2896,7 +2896,7 @@
  <e en="F" t="00700294" n="CompoundGraphicType"></e>
  <e en="F" t="00700295" n="GraphicGroupID"></e>
  <e en="F" t="00700306" n="ShapeType"></e>
- <e en="F" t="00700308" n="RegistrationSeq"></e>
+ <e en="T" t="00700308" n="RegistrationSeq">@process()</e>
  <e en="F" t="00700309" n="MatrixRegistrationSeq"></e>
  <e en="F" t="0070030a" n="MatrixSeq"></e>
  <e en="F" t="0070030b" n="FrameOfReferenceToDisplayedCoordinateSystemTransformationMatrix"></e>
@@ -3435,25 +3435,25 @@
  <e en="F" t="30060006" n="StructureSetDescription"></e>
  <e en="F" t="30060008" n="StructureSetDate"></e>
  <e en="F" t="30060009" n="StructureSetTime"></e>
- <e en="F" t="30060010" n="RefFrameOfReferenceSeq"></e>
- <e en="F" t="30060012" n="RTRefStudySeq"></e>
- <e en="F" t="30060014" n="RTRefSeriesSeq"></e>
- <e en="F" t="30060016" n="ContourImageSeq"></e>
- <e en="F" t="30060018" n="PredecessorStructureSetSeq"></e>
- <e en="F" t="30060020" n="StructureSetROISeq"></e>
+ <e en="T" t="30060010" n="RefFrameOfReferenceSeq">@process()</e>
+ <e en="T" t="30060012" n="RTRefStudySeq">@process()</e>
+ <e en="T" t="30060014" n="RTRefSeriesSeq">@process()</e>
+ <e en="T" t="30060016" n="ContourImageSeq">@process()</e>
+ <e en="T" t="30060018" n="PredecessorStructureSetSeq">@process()</e>
+ <e en="T" t="30060020" n="StructureSetROISeq">@process()</e>
  <e en="F" t="30060022" n="ROINumber"></e>
  <e en="T" t="30060024" n="ReferencedFrameOfReferenceUID">@hashuid(@UIDROOT,this)</e>
  <e en="F" t="30060026" n="ROIName"></e>
  <e en="F" t="30060028" n="ROIDescription"></e>
  <e en="F" t="3006002a" n="ROIDisplayColor"></e>
  <e en="F" t="3006002c" n="ROIVolume"></e>
- <e en="F" t="30060030" n="RTRelatedROISeq"></e>
+ <e en="T" t="30060030" n="RTRelatedROISeq">@process()</e>
  <e en="F" t="30060033" n="RTROIRelationship"></e>
  <e en="F" t="30060036" n="ROIGenerationAlgorithm"></e>
  <e en="F" t="30060037" n="ROIDerivationAlgorithmIdentificationSeq"></e>
  <e en="F" t="30060038" n="ROIGenerationDescription"></e>
- <e en="F" t="30060039" n="ROIContourSeq"></e>
- <e en="F" t="30060040" n="ContourSeq"></e>
+ <e en="T" t="30060039" n="ROIContourSeq">@process()</e>
+ <e en="T" t="30060040" n="ContourSeq">@process()</e>
  <e en="F" t="30060042" n="ContourGeometricType"></e>
  <e en="F" t="30060044" n="ContourSlabThickness"></e>
  <e en="F" t="30060045" n="ContourOffsetVector"></e>
@@ -3587,7 +3587,7 @@
  <e en="F" t="300a000b" n="TreatmentSites"></e>
  <e en="F" t="300a000c" n="RTPlanGeometry"></e>
  <e en="F" t="300a000e" n="PrescriptionDescription"></e>
- <e en="F" t="300a0010" n="DoseReferenceSeq"></e>
+ <e en="T" t="300a0010" n="DoseReferenceSeq">@process()</e>
  <e en="F" t="300a0012" n="DoseReferenceNumber"></e>
  <e en="T" t="300a0013" n="DoseReferenceUID">@hashuid(@UIDROOT,this)</e>
  <e en="F" t="300a0014" n="DoseReferenceStructureType"></e>
@@ -3623,7 +3623,7 @@
  <e en="F" t="300a0052" n="TableTopLongitudinalPositionTolerance"></e>
  <e en="F" t="300a0053" n="TableTopLateralPositionTolerance"></e>
  <e en="F" t="300a0055" n="RTPlanRelationship"></e>
- <e en="F" t="300a0070" n="FractionGroupSeq"></e>
+ <e en="T" t="300a0070" n="FractionGroupSeq">@process()</e>
  <e en="F" t="300a0071" n="FractionGroupNumber"></e>
  <e en="F" t="300a0072" n="FractionGroupDescription"></e>
  <e en="F" t="300a0078" n="NumberOfFractionsPlanned"></e>
@@ -4112,7 +4112,7 @@
  <e en="F" t="300a0688" n="RTBeamModifierDefinitionDistance"></e>
  <e en="F" t="300a0689" n="BeamAreaLimitSeq"></e>
  <e en="F" t="300a068a" n="RefRTPrescriptionSeq"></e>
- <e en="F" t="300c0002" n="RefRTPlanSeq"></e>
+ <e en="T" t="300c0002" n="RefRTPlanSeq">@process()</e>
  <e en="F" t="300c0004" n="RefBeamSeq"></e>
  <e en="F" t="300c0006" n="RefBeamNumber"></e>
  <e en="F" t="300c0007" n="RefReferenceImageNumber"></e>
@@ -4128,7 +4128,7 @@
  <e en="F" t="300c0050" n="RefDoseReferenceSeq"></e>
  <e en="F" t="300c0051" n="RefDoseReferenceNumber"></e>
  <e en="F" t="300c0055" n="BrachyRefDoseReferenceSeq"></e>
- <e en="F" t="300c0060" n="RefStructureSetSeq"></e>
+ <e en="T" t="300c0060" n="RefStructureSetSeq">@process()</e>
  <e en="F" t="300c006a" n="RefPatientSetupNumber"></e>
  <e en="F" t="300c0080" n="RefDoseSeq"></e>
  <e en="F" t="300c00a0" n="RefToleranceTableNumber"></e>
@@ -4422,7 +4422,7 @@
  <k en="T" t="0020">Keep group 0020</k>
  <k en="T" t="0028">Keep group 0028</k>
  <r en="T" t="curves">Remove curves</r>
- <r en="T" t="overlays">Remove overlays</r>
- <r en="T" t="privategroups">Remove private groups</r>
+ <r en="T" t="overlays">Remove overlays (groups 60xx)</r>
+ <r en="T" t="privategroups">Remove private groups [recommended]</r>
  <r en="F" t="unspecifiedelements">Remove unchecked elements</r>
 </script>

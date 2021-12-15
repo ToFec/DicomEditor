@@ -170,7 +170,7 @@ public class RightPanel extends JPanel implements FileListener, ActionListener {
 		String key = (String) iter.next();
 		while (key != null) {
 			Object value = integerTable.index.get(key);
-			dataLines.add(new String[] { key, ",", value.toString() });
+			dataLines.add(new String[] { key, value.toString() });
 			key = (String) iter.next();
 		}
 
